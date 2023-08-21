@@ -6,9 +6,9 @@ if (isset($_POST['submit'])) {
 
     $suhu_fanherit = $suhu_celcius / 33.8;
 
-    if ($suhu_celcius > 30) {
+    if ($suhu_celcius > 300) {
         echo "buakarr";
-    } elseif ($suhu_celcius > 25) {
+    } elseif ($suhu_celcius > 250) {
         echo "tirizz";
     } else {
         echo "normal";
