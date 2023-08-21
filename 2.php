@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         <p>Nama: <?php echo $name; ?></p>
         <p>Gaji Pokok: <?php echo $gaji_pokok; ?></p>
         <p>Gaji Bersih: <?php echo $gaji_bersih; ?></p>
-        <p>Pendapatan Jabatan: <?php echo $pjk; ?></p>
+        <p>Pajak: <?php echo $pjk; ?></p>
         <p>Tunjangan: <?php echo $tunj; ?></p>
     <?php endif; ?>
 </body>
