@@ -8,7 +8,7 @@
 <body>
     <form method="POST" action="">
         <tr>
-            <td>Input Kode Pegawai</td>
+            <td>No Pegawai</td>
             <td><input type="number" value="kode pegawai" name="bilangan"></td>
         </tr>
         <tr>
