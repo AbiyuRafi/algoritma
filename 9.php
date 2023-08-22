@@ -19,6 +19,34 @@ if (isset($_POST['submit'])) {
         $bulan = strtr($no_pegawai, 3, 2);
         $tahun = strtr($no_pegawai, 5, 4);
         $no_urut = strtr($no_pegawai, 9, 2);
+
+        if ($bulan == "01") {
+            echo "Bulan: Januari";
+        } elseif ($bulan == "02") {
+            echo "Bulan: Februari";
+        } elseif ($bulan == "03") {
+            echo "Bulan: Maret";
+        } elseif ($bulan == "04") {
+            echo "Bulan: April";
+        } elseif ($bulan == "05") {
+            echo "Bulan: Mei";
+        } elseif ($bulan == "06") {
+            echo "Bulan: Juni";
+        } elseif ($bulan == "07") {
+            echo "Bulan: Juli";
+        } elseif ($bulan == "08") {
+            echo "Bulan: Agustus";
+        } elseif ($bulan == "09") {
+            echo "Bulan: September";
+        } elseif ($bulan == "10") {
+            echo "Bulan: Oktober";
+        } elseif ($bulan == "11") {
+            echo "Bulan: November";
+        } elseif ($bulan == "12") {
+            echo "Bulan: Desember";
+        } else {
+            echo "";
+        }
     }
 }
 
