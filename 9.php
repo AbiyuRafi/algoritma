@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kode Pegawai</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <form method="POST" action="">
-        <tr>
-            <td>No Pegawai</td>
-            <td><input type="number" value="kode pegawai" name="bilangan"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" name="submit"></td>
-        </tr>
-    </form>
+    <div class="container">
+        <center>
+            <form method="POST" action="">
+                <table>
+                    <tr>
+                        <td>No Pegawai</td>
+                        <td><input type="number" value="kode pegawai" name="bilangan"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Submit" name="submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+    </div>
     <?php
     if (isset($_POST['submit'])) {
         $kodepegawai = $_POST['bilangan'];
@@ -64,4 +73,5 @@
     }
     ?>
 </body>
+
 </html>
