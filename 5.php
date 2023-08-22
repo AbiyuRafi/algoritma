@@ -8,6 +8,7 @@ $harga_setelah = 0;
 if (isset($_POST['total_gram'])) {
     $total_gram = $_POST['total_gram'];
     $harga_sebelum = 500 * $total_gram;
+    $diskon = 27; //misal diskon 27%
     $harga_setelah = $harga_sebelum - ($harga_sebelum * $diskon / 100);
 }
 
