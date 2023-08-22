@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 
     if ($suhu_celcius > 30) {
         echo "buakarr";
-    } elseif ($suhu_celcius > 25) {
+    } elseif ($suhu_celcius < 25) {
         echo "tirizz";
     } else {
         echo "normal";
