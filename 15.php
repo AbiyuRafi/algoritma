@@ -1,0 +1,6 @@
+<?php
+
+$terbesar;
+$terkecil;
+$rata;
+

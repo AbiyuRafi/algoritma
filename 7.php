@@ -2,9 +2,9 @@
 
 if (isset($_POST['submit'])) {
     $suhu_celcius = $_POST['suhu_celcius'];
-    $suhu_fanherit;
+    $suhu_fahrenheit;
 
-    $suhu_fanherit = $suhu_celcius / 33.8;
+    $suhu_fahrenheit = $suhu_celcius / 33.8;
 
     if ($suhu_celcius > 30) {
         echo "buakarr";
