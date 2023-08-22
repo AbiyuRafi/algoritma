@@ -1,9 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: #8d99ae ;
+    background: #adb5bd;
     font-family: Arial, sans-serif;
-    color: #fff;
+    color: black;
 }
 
 .container {
@@ -32,7 +32,7 @@ input[type="number"] {
     padding: 10px;
     border: none;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: black;
     border-radius: 5px;
     outline: none;
 }

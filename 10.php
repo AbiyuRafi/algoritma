@@ -15,15 +15,15 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: linear-gradient(to bottom, #2c3e50, #34495e);
+        background: #adb5bd;
         font-family: Arial, sans-serif;
-        color: #fff;
+        color: black;
     }
 
     .box {
         width: 400px;
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 250, 0.2);
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         margin: auto;
@@ -44,9 +44,8 @@
         padding: 10px;
         border: none;
         background-color: rgba(255, 255, 255, 0.1);
-        color: #fff;
+        color: black;
         border-radius: 5px;
-        /* outline: none; */
     }
 
     input[type="submit"] {
@@ -77,15 +76,15 @@
             <table>
                 <tr>
                     <td>Input Jam</td>
-                    <td><input type="number" name="hh"></td>
+                    <td><input type="number" name="hh" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
                 </tr>
                 <tr>
                     <td>Input Menit</td>
-                    <td><input type="number" name="mm"></td>
+                    <td><input type="number" name="mm" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
                 </tr>
                 <tr>
                     <td>Input detik</td>
-                    <td><input type="number" name="ss"></td>
+                    <td><input type="number" name="ss" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
                 </tr>
                 <td><input type="submit" value="Submit" name="submit"></td>
             </table>
