@@ -1,12 +1,12 @@
 <?php
 
-$no_pegawai = "";
-$no_golongan = "";
-$tanggal = "";
-$bulan = "";
-$tahun = "";
-$no_urut = "";
-$tanggal_lahir = "";
+$no_pegawai;
+$no_golongan;
+$tanggal;
+$bulan;
+$tahun;
+$no_urut;
+$tanggal_lahir;
 
 if (isset($_POST['submit'])) {
     $no_pegawai = $_POST['nomer'];
@@ -14,7 +14,11 @@ if (isset($_POST['submit'])) {
     if (strlen($no_pegawai) < 11) {
         echo "No pegawai tidak sesuai";
     } else {
-        echo "No pegawai sesuai";
+        $no_golongan = strtr($no_pegawai, 0, 1);
+        $tanggal = strtr($no_pegawai, 1, 2);
+        $bulan = strtr($no_pegawai, 3, 2);
+        $tahun = strtr($no_pegawai, 5, 4);
+        $no_urut = strtr($no_pegawai, 9, 2);
     }
 }
 
@@ -34,7 +38,7 @@ if (isset($_POST['submit'])) {
         <table>
             <tr>
                 <td>No Pegawai</td>
-                <td><input type="text" name="nomer" value="<?php echo $no_pegawai; ?>"></td>
+                <td><input type="text" name="nomer" value=></td>
             </tr>
             <tr>
                 <td><input type="submit" name="submit" value="Submit"></td>
