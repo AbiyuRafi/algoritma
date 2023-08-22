@@ -44,8 +44,6 @@ if (isset($_POST['submit'])) {
             echo "Bulan: November";
         } elseif ($bulan == "12") {
             echo "Bulan: Desember";
-        } else {
-            echo "";
         }
     }
 }
