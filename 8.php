@@ -1,10 +1,16 @@
 <?php
 
-$pabp = 0;
-$mtk = 0;
-$dpk = 0;
-$rata = 0;
+if (isset($_POST['submit'])) {
+    $bilangan = $_POST['bilangan'];
 
+    $ratusan = floor(($bilangan / 100) % 10);
+    $puluhan = floor(($bilangan / 10) % 10);
+    $satuan = $bilangan % 10;
+
+    echo "Ratusan: $ratusan <br>";
+    echo "Puluhan: $puluhan <br>";
+    echo "Satuan: $satuan";
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,57 +19,23 @@ $rata = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Algoritma Bilangan</title>
 </head>
 
 <body>
     <form action="" method="post">
         <table>
             <tr>
-                <td>PABP</td>
+                <td>Bilangan</td>
                 <td>:</td>
-                <td><input type="text" name="pabp"></td>
+                <td><input type="number" name="bilangan"></td>
             </tr>
             <tr>
-                <td>MTK</td>
-                <td>:</td>
-                <td><input type="text" name="mtk"></td>
-            </tr>
-            <tr>
-                <td>DPK</td>
-                <td>:</td>
-                <td><input type="text" name="dpk"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" name="submit" value="submit"></td>
+                <td><input type="submit" name="submit" value="Submit"></td>
             </tr>
         </table>
     </form>
+
 </body>
 
 </html>
-
-<?php
-
-if (isset($_POST['submit'])) {
-    $pabp = $_POST['pabp'];
-    $mtk = $_POST['mtk'];
-    $dpk = $_POST['dpk'];
-    $rata = ($pabp + $mtk + $dpk) / 3;
-
-    if ($rata <= 100 && $rata >= 80) {
-        echo "A";
-    } elseif ($rata < 80 && $rata >= 75) {
-        echo "B";
-    } elseif ($rata < 75 && $rata >= 65) {
-        echo "C";
-    } elseif ($rata < 65 && $rata >= 45) {
-        echo "D";
-    } elseif ($rata < 45 && $rata >= 0) {
-        echo "E";
-    } else {
-        echo "angka tidak sesuai";
-    }
-}
-
-?>

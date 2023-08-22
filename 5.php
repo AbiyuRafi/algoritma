@@ -1,17 +1,8 @@
 <?php
 
-$total_gram = 0;
-$harga_sebelum = 0;
-$diskon = 0;
-$harga_setelah = 0;
-
-if (isset($_POST['total_gram'])) {
-    $total_gram = $_POST['total_gram'];
-    $harga_sebelum = 500 * $total_gram;
-    $diskon = 27; //misal diskon 27%
-    $harga_setelah = $harga_sebelum - ($harga_sebelum * $diskon / 100);
-}
-
+$jam;
+$menit;
+$detik;
 ?>
 
 <!DOCTYPE html>
@@ -27,21 +18,34 @@ if (isset($_POST['total_gram'])) {
     <form action="" method="post">
         <table>
             <tr>
-                <td>Total gram</td>
-                <td><input type="text" name="total_gram"></td>
+                <td>Jam</td>
+                <td><input type="number" name="jam" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="submit"></td>
+                <td>Menit</td>
+                <td><input type="number" name="menit" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
+            </tr>
+            <tr>
+                <td>Detik</td>
+                <td><input type="number" name="detik" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Submit"></td>
             </tr>
         </table>
     </form>
 </body>
 
 </html>
-
 <?php
-if ($total_gram > 0) {
-    echo "Harga sebelum diskon : $harga_sebelum <br>";
-    echo "Dan harga setelah diskon : $harga_setelah";
+
+if (isset($_POST['submit'])) {
+    $jam = $_POST['jam'];
+    $menit = $_POST['menit'];
+    $detik = $_POST['detik'];
+
+    $total_detik = ($jam * 3600) + ($menit * 60) + $detik;
+
+    echo "Total detik: $total_detik detik";
 }
-?>

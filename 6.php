@@ -1,41 +1,43 @@
-<?php
-
-if (isset($_POST['submit'])) {
-    $bilangan = $_POST['bilangan'];
-
-    $ratusan = floor(($bilangan / 100) % 10);
-    $puluhan = floor(($bilangan / 10) % 10);
-    $satuan = $bilangan % 10;
-
-    echo "Ratusan: $ratusan <br>";
-    echo "Puluhan: $puluhan <br>";
-    echo "Satuan: $satuan";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritma Bilangan</title>
+    <title>Document</title>
 </head>
 
 <body>
     <form action="" method="post">
-        <table>
-            <tr>
-                <td>Bilangan</td>
-                <td>:</td>
-                <td><input type="number" name="bilangan"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" name="submit" value="Submit"></td>
-            </tr>
-        </table>
+        <tr>
+            <td>Waktu</td>
+            <td><input type="text" name="totalDetik"></td>
+            <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
     </form>
-
 </body>
 
 </html>
+
+<?php
+
+if (isset($_POST['submit'])) {
+    $totalDetik = ($_POST['totalDetik']);
+
+    $jam = floor($totalDetik / 3600);
+    $sisaDetik = $totalDetik % 3600;
+    $menit = floor($sisaDetik / 60);
+    $detik = $sisaDetik % 60;
+
+    $output = "";
+    if ($jam > 0) {
+        $output .= $jam . " jam ";
+    }
+    if ($menit > 0) {
+        $output .= $menit . " menit ";
+    }
+    $output .= $detik . " detik";
+
+    echo "Total detik $totalDetik menjadi: $output";
+}
+?>

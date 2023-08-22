@@ -1,44 +1,47 @@
 <?php
 
-if (isset($_POST['submit'])) {
-    $suhu_celcius = $_POST['suhu_celcius'];
-    $suhu_fahrenheit;
+$total_gram = 0;
+$harga_sebelum = 0;
+$diskon = 0;
+$harga_setelah = 0;
 
-    $suhu_fahrenheit = $suhu_celcius / 33.8;
-
-    if ($suhu_celcius > 30) {
-        echo "buakarr";
-    } elseif ($suhu_celcius < 25) {
-        echo "tirizz";
-    } else {
-        echo "normal";
-    }
+if (isset($_POST['total_gram'])) {
+    $total_gram = $_POST['total_gram'];
+    $harga_sebelum = 500 * $total_gram;
+    $diskon = 27; //misal diskon 27%
+    $harga_setelah = $harga_sebelum - ($harga_sebelum * $diskon / 100);
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suhu</title>
+    <title>Document</title>
 </head>
 
 <body>
-    <form method="post" action="">
+    <form action="" method="post">
         <table>
             <tr>
-                <td>suhu</td>
-                <td><input type="text" name="suhu_celcius" id="suhu"></td>
+                <td>Total gram</td>
+                <td><input type="text" name="total_gram"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit" name="submit">
+                <td><input type="submit" value="submit"></td>
             </tr>
         </table>
     </form>
-
-
 </body>
 
 </html>
+
+<?php
+if ($total_gram > 0) {
+    echo "Harga sebelum diskon : $harga_sebelum <br>";
+    echo "Dan harga setelah diskon : $harga_setelah";
+}
+?>

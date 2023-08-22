@@ -1,3 +1,21 @@
+<?php
+
+$tunj = 0;
+$pjk = 0;
+$gaji_bersih = 0;
+$gaji_pokok = 0;
+$name = "";
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $gaji_pokok = $_POST['gaji_pokok'];
+    $gaji_bersih = $gaji_pokok - ($gaji_pokok * 0.1);
+    $pjk = $gaji_bersih - ($gaji_bersih * 0.1);
+    $tunj = $pjk - ($pjk * 0.1);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,35 +27,18 @@
 
 <body>
     <form action="" method="post">
-        <tr>
-            <td>Waktu</td>
-            <td><input type="text" name="totalDetik"></td>
-            <td><input type="submit" name="submit" value="Submit"></td>
-        </tr>
+        <input type="text" name="name" required placeholder="Nama" value="<?php echo $name; ?>"><br>
+        <input type="number" name="gaji_pokok" required placeholder="Gaji" value="<?php echo $gaji_pokok; ?>"><br>
+        <input type="submit" value="submit" name="submit">
     </form>
+
+    <?php if (isset($_POST['submit'])) : ?>
+        <p>Nama: <?php echo $name; ?></p>
+        <p>Gaji Pokok: <?php echo $gaji_pokok; ?></p>
+        <p>Gaji Bersih: <?php echo $gaji_bersih; ?></p>
+        <p>Pajak: <?php echo $pjk; ?></p>
+        <p>Tunjangan: <?php echo $tunj; ?></p>
+    <?php endif; ?>
 </body>
 
 </html>
-
-<?php
-
-if (isset($_POST['submit'])) {
-    $totalDetik = ($_POST['totalDetik']);
-
-    $jam = floor($totalDetik / 3600);
-    $sisaDetik = $totalDetik % 3600;
-    $menit = floor($sisaDetik / 60);
-    $detik = $sisaDetik % 60;
-
-    $output = "";
-    if ($jam > 0) {
-        $output .= $jam . " jam ";
-    }
-    if ($menit > 0) {
-        $output .= $menit . " menit ";
-    }
-    $output .= $detik . " detik";
-
-    echo "Total detik $totalDetik menjadi: $output";
-}
-?>

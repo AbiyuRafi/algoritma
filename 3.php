@@ -1,10 +1,10 @@
 <?php
 
-$jam;
-$menit;
-$detik;
-?>
+$bil1;
+$bil2;
+$bil3;
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,34 +18,52 @@ $detik;
     <form action="" method="post">
         <table>
             <tr>
-                <td>Jam</td>
-                <td><input type="number" name="jam" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
+                <td>Bilangan </td>
+                <td>:</td>
+                <td><input type="text" name="bil1"></td>
             </tr>
             <tr>
-                <td>Menit</td>
-                <td><input type="number" name="menit" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
+                <td>Bilangan </td>
+                <td>:</td>
+                <td><input type="text" name="bil2"></td>
             </tr>
             <tr>
-                <td>Detik</td>
-                <td><input type="number" name="detik" maxlength="2" onKeyPress="if( this.value.length == 2 ) return false;"></td>
+                <td>Bilangan </td>
+                <td>:</td>
+                <td><input type="text" name="bil3"></td>
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="Submit"></td>
+            <td><input type="submit" value="cari" name="submit"></td>
             </tr>
         </table>
     </form>
 </body>
 
 </html>
+
 <?php
-
 if (isset($_POST['submit'])) {
-    $jam = $_POST['jam'];
-    $menit = $_POST['menit'];
-    $detik = $_POST['detik'];
 
-    $total_detik = ($jam * 3600) + ($menit * 60) + $detik;
+    $bil1 = $_POST["bil1"];
+    $bil2 = $_POST["bil2"];
+    $bil3 = $_POST["bil3"];
 
-    echo "Total detik: $total_detik detik";
+    if ($bil1 > $bil2 && $bil1 > $bil3) {
+        echo "Bilangan terbesar: " . $bil1;
+    } elseif ($bil2 > $bil1 && $bil2 > $bil3) {
+        echo "Bilangan terbesar: " . $bil2;
+    } elseif ($bil3 > $bil1 && $bil3 > $bil2) {
+        echo "Bilangan terbesar: " . $bil3;
+    } else {
+        if ($bil1 == $bil2 && $bil2 == $bil3) {
+            echo "Semua bilangan sama: " . $bil1;
+        } elseif ($bil1 == $bil2) {
+            echo "Dua bilangan terbesar sama: " . $bil1;
+        } elseif ($bil1 == $bil3) {
+            echo "Dua bilangan terbesar sama: " . $bil1;
+        } elseif ($bil2 == $bil3) {
+            echo "Dua bilangan terbesar sama: " . $bil2;
+        } else {
+            echo "sama";
+        }
+    }
 }
