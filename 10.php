@@ -20,7 +20,6 @@
         padding: 0;
     }
 
-    /* Apply a gradient background */
     body {
         display: flex;
         align-items: center;
@@ -40,7 +39,6 @@
         margin: auto;
     }
 
-    /* Style form elements */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -76,7 +74,6 @@
         background-color: #c0392b;
     }
 
-    /* Add some spacing to the output */
     .output {
         margin-top: 20px;
         font-size: 16px;
