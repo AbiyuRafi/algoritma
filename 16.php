@@ -1,107 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<y lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pencarian Juara Kelas</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-<body>
-    <h2>Pencarian Juara Kelas</h2>
+    <body>
+        <form method="post" action="">
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $siswa = array();
+                for ($i = 1; $i <= 15; $i++) {
+                    echo "<h3>Siswa ke-$i</h3>";
+                    $nilaiTotal = 0;
+                    for ($j = 1; $j <= 5; $j++) {
+                        $mataPelajaran = ['MTK', 'INDO', 'INGG', 'DPK', 'Agama'][$j - 1];
+                        echo "$mataPelajaran: <input type='number' name='nilai[$i][$j]' required><br>";
+                    }
+                    echo "Kehadiran (dalam persen): <input type='number' name='kehadiran[$i]' min='0' max='100' required><br>";
+                }
+                echo "<br><input type='submit' value='Hitung Juara'>";
+            } else {
+                echo "<p>Silakan isi nilai dan kehadiran siswa:</p>";
+                echo "<form method='post' action=''>";
+                echo "<input type='submit' value='Mulai'>";
+            }
+            ?>
 
-    <?php
-    $students = array();
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nilai']) && isset($_POST['kehadiran'])) {
+                $siswa = $_POST['nilai'];
+                $kehadiran = $_POST['kehadiran'];
 
-    if (isset($_POST['submit'])) {
-        $nama = $_POST['nama'];
-        $mtk = $_POST['mtk'];
-        $indo = $_POST['indo'];
-        $ingg = $_POST['ingg'];
-        $dpk = $_POST['dpk'];
-        $agama = $_POST['agama'];
-        $kehadiran = $_POST['kehadiran'];
-
-        $totalNilai = $mtk + $indo + $ingg + $dpk + $agama;
-
-        $students[] = array(
-            'nama' => $nama,
-            'nilai' => array(
-                'mtk' => $mtk,
-                'indo' => $indo,
-                'ingg' => $ingg,
-                'dpk' => $dpk,
-                'agama' => $agama
-            ),
-            'kehadiran' => $kehadiran,
-            'totalNilai' => $totalNilai
-        );
-
-        if (count($students) >= 15) {
-            $highestTotal = 0;
-            $juaraName = '';
-
-            foreach ($students as $student) {
-                if ($student['totalNilai'] >= 475 && $student['kehadiran'] == 100) {
-                    if ($student['totalNilai'] > $highestTotal) {
-                        $highestTotal = $student['totalNilai'];
-                        $juaraName = $student['nama'];
+                $juara = array();
+                foreach ($siswa as $index => $dataSiswa) {
+                    $nilaiTotal = array_sum($dataSiswa);
+                    if ($nilaiTotal >= 475 && $kehadiran[$index] == 100) {
+                        $juara[] = "Siswa ke-$index";
                     }
                 }
+
+                if (count($juara) > 0) {
+                    echo "<h2>Siswa yang memenuhi kriteria sebagai juara:</h2>";
+                    foreach ($juara as $namaSiswa) {
+                        echo "<p>$namaSiswa</p>";
+                    }
+                } else {
+                    echo "<h2>Tidak ada siswa yang memenuhi kriteria juara.</h2>";
+                }
             }
+            ?>
+        </form>
+    </body>
 
-            if ($juaraName !== '') {
-                echo "<h3>Hasil Pencarian Juara Kelas</h3>";
-                echo "Siswa dengan nilai total tertinggi yang memenuhi kriteria juara kelas adalah: $juaraName";
-            } else {
-                echo "<h3>Hasil Pencarian Juara Kelas</h3>";
-                echo "<p>Tidak ada siswa yang memenuhi kriteria untuk menjadi juara kelas.</p>";
-            }
-        }
-    }
-    ?>
-
-    <form method="POST" action="">
-        <label for="nama">Nama Siswa:</label>
-        <input type="text" name="nama" required><br>
-
-        <h3>Input Nilai dan Kehadiran</h3>
-        <label for="mtk">Nilai Matematika:</label>
-        <input type="number" name="mtk" required><br>
-
-        <label for="indo">Nilai Bahasa Indonesia:</label>
-        <input type="number" name="indo" required><br>
-
-        <label for="ingg">Nilai Bahasa Inggris:</label>
-        <input type="number" name="ingg" required><br>
-
-        <label for="dpk">Nilai DPK:</label>
-        <input type="number" name="dpk" required><br>
-
-        <label for="agama">Nilai Agama:</label>
-        <input type="number" name="agama" required><br>
-
-        <label for="kehadiran">Kehadiran (dalam %):</label>
-        <input type="number" name="kehadiran" required><br>
-
-        <input type="submit" value="Tambah Siswa" name="submit">
-    </form>
-
-    <?php if (!empty($students)) : ?>
-        <h3>Daftar Siswa dan Nilai</h3>
-        <ul>
-            <?php foreach ($students as $student) : ?>
-                <li>
-                    <?php echo $student['nama']; ?>:
-                    MTK(<?php echo $student['nilai']['mtk']; ?>),
-                    INDO(<?php echo $student['nilai']['indo']; ?>),
-                    INGG(<?php echo $student['nilai']['ingg']; ?>),
-                    DPK(<?php echo $student['nilai']['dpk']; ?>),
-                    Agama(<?php echo $student['nilai']['agama']; ?>)
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-</body>
-
-</html>
+    </html>
