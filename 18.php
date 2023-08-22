@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
     </head>
-
     <body>
         <form method="post" action="">
             <?php
@@ -27,7 +26,7 @@
                 echo "<input type='submit' value='Mulai'>";
             }
             ?>
-
+            
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nilai']) && isset($_POST['kehadiran'])) {
                 $siswa = $_POST['nilai'];
