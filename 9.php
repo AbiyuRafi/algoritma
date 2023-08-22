@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
             echo "Bulan: Oktober";
         } elseif ($bulan == "11") {
             echo "Bulan: November";
-        } elseif ($bulan == "12") {
+        } else {
             echo "Bulan: Desember";
         }
     }
