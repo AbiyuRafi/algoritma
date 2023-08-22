@@ -6,7 +6,7 @@
         <title>Document</title>
     </head>
     <body>
-        <form method="post" action="">
+        <form action="" method="post" >
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $siswa = array();
@@ -19,9 +19,9 @@
                     }
                     echo "Kehadiran : <input type='number' name='kehadiran[$i]' min='0' max='100' required><br>";
                 }
-                echo "<br><input type='submit' value='Hitung Juara'>";
+                echo "<br><input type='submit' value='Cari'>";
             } else {
-                echo "<p>Silakan isi nilai dan kehadiran siswa:</p>";
+                echo "<p> isi nilai dan kehadiran siswa:</p>";
                 echo "<form method='post' action=''>";
                 echo "<input type='submit' value='Mulai'>";
             }
