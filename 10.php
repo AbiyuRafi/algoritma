@@ -8,76 +8,78 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <style>
-    body,
-    html,
-    h1,
-    h2,
-    h3,
-    p,
-    ul,
-    li {
-        margin: 0;
-        padding: 0;
-    }
+/* style.css */
 
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background: linear-gradient(to bottom, #2c3e50, #34495e);
-        font-family: Arial, sans-serif;
-        color: #fff;
-    }
+/* Reset some default styling */
+body, html, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
 
-    .box {
-        width: 400px;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        margin: auto;
-    }
+/* Apply a gradient background */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #2c3e50, #34495e);
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+.box {
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin: auto;
+}
 
-    td {
-        padding: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
+/* Style form elements */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-    input[type="number"] {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border-radius: 5px;
-        outline: none;
-    }
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-    input[type="submit"] {
-        background-color: #e74c3c;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
 
-    input[type="submit"]:hover {
-        background-color: #c0392b;
-    }
+input[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .output {
-        margin-top: 20px;
-        font-size: 16px;
-    }
+input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+/* Style output */
+.output {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
 </style>
 
 <body>
