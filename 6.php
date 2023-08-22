@@ -6,6 +6,10 @@ if (isset($_POST['submit'])) {
     $ratusan = floor(($bilangan / 100) % 10);
     $puluhan = floor(($bilangan / 10) % 10);
     $satuan = $bilangan % 10;
+
+    echo "Ratusan: $ratusan <br>";
+    echo "Puluhan: $puluhan <br>";
+    echo "Satuan: $satuan";
 }
 ?>
 
@@ -35,11 +39,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-
-<?php
-if (isset($_POST['submit'])) {
-    echo "Ratusan: $ratusan <br>";
-    echo "Puluhan: $puluhan <br>";
-    echo "Satuan: $satuan";
-}
-?>
