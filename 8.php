@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
     } elseif ($rata < 45 && $rata >= 0) {
         echo "E";
     } else {
-        echo "ga lulus";
+        echo "angka tidak sesuai";
     }
 }
 
