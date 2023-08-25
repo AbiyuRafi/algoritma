@@ -1,58 +1,61 @@
 <!DOCTYPE html>
-<y lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No. 18</title>
+</head>
+<body>
+    <form action="" method="post">
+        <?php for($i = 1; $i <= 5 ; $i++): ?>
+            <h3>Input data siswa ke- <?=$i?></h3>
+            <input type="text" name="nama<?=$i?>" placeholder="Nama"><br>
+            <input type="number" name="mtk<?=$i?>" placeholder="MTK"><br>
+            <input type="number" name="indo<?=$i?>" placeholder="INDO"><br>
+            <input type="number" name="ing<?=$i?>" placeholder="INGRIS"><br>
+            <input type="number" name="dpk<?=$i?>" placeholder="DPK"><br>
+            <input type="number" name="agm<?=$i?>" placeholder="AGAMA"><br>
+            <input type="number" name="kehadiran<?=$i?>" placeholder="Kehadiran"><br>
+        <?php endfor; ?>
+        <br><button type="submit" name="submit">submit</button>
+    </form>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
+    <?php
+        $juara = '';
+        $nama = [];
+        $hdr =[];
+        $nilait = [];
+        $jmlh = 0;
+        $max = 0;
 
-    <body>
-        <form action="" method="post">
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $siswa = array();
-                for ($i = 1; $i <= 15; $i++) {
-                    echo "<h3>Siswa ke-$i</h3>";
-                    $nilaiTotal = 0;
-                    for ($j = 1; $j <= 5; $j++) {
-                        $mataPelajaran = ['MTK', 'INDO', 'INGG', 'DPK', 'Agama'][$j - 1];
-                        echo "$mataPelajaran: <input type='number' name='nilai[$i][$j]' required><br>";
-                    }
-                    echo "Kehadiran : <input type='number' name='kehadiran[$i]' min='0' max='100' required><br>";
-                }
-                echo "<br><input type='submit' value='Cari'>";
-            } else {
-                echo "<p> isi nilai dan kehadiran siswa:</p>";
-                echo "<form method='post' action=''>";
-                echo "<input type='submit' value='Mulai'>";
+        if(isset($_POST['submit'])){
+            for($i = 1; $i <= 5 ; $i++){
+
+                $namaSiswa = $_POST["nama$i"];
+                $mtks = intval($_POST["mtk$i"]);
+                $indos = intval($_POST["indo$i"]);
+                $ings = intval($_POST["ing$i"]);
+                $dpks = intval($_POST["dpk$i"]);
+                $agms = intval($_POST["agm$i"]);
+                $hdrs = intval($_POST["kehadiran$i"]);
+                $jmlh = $mtks + $indos + $ings + $dpks + $agms ;
+
+                array_push($nama, $namaSiswa);
+                array_push ( $hdr, $hdrs );
+                array_push($nilait, $jmlh);
             }
-            ?>
 
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nilai']) && isset($_POST['kehadiran'])) {
-                $siswa = $_POST['nilai'];
-                $kehadiran = $_POST['kehadiran'];
 
-                $juara = array();
-                foreach ($siswa as $index => $dataSiswa) {
-                    $nilaiTotal = array_sum($dataSiswa);
-                    if ($nilaiTotal >= 475 && $kehadiran[$index] == 100) {
-                        $juara[] = "Siswa ke-$index";
+            for($a = 0; $a <= 4 ; $a++){
+                if($nilait[$a] >= 475 && $hdr[$a] == 100){
+                    if($nilait[$a] > $max){
+                        $max = $nilait[$a];
+                        $juara = $nama[$a];
                     }
-                }
-
-                if (count($juara) > 0) {
-                    echo "<h2>Siswa yang mendapat juara kelas adalah :</h2>";
-                    foreach ($juara as $namaSiswa) {
-                        echo "<p>$namaSiswa</p>";
-                    }
-                } else {
-                    echo "<h2>Tidak ada siswa yang juara.</h2>";
                 }
             }
-            ?>
-        </form>
-    </body>
-
-    </html>
+            echo "<br>Juara Kelas: ".$juara." dengan total nilai yaitu ". $max ."<hr>";
+        }
+    ?>
+</body>
+</html>
