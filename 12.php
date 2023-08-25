@@ -9,65 +9,67 @@
 </head>
 <style>
     body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background: #adb5bd;
-        font-family: Arial, sans-serif;
-        color: black;
-    }
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #adb5bd;
+    font-family: Arial, sans-serif;
+    color: black;
+}
 
-    .box {
-        width: 400px;
-        padding: 20px;
-        background-color: rgba(255, 255, 250, 0.2);
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        margin: auto;
-    }
+.box {
+    width: 90%;
+    max-width: 400px; /* Batas lebar maksimum */
+    padding: 20px;
+    background-color: rgba(255, 255, 250, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin: auto;
+}
 
-    table {
-        width: 100%;
-        margin-top: 20px;
-    }
+table {
+    width: 100%;
+    margin-top: 20px;
+}
 
-    td {
-        padding: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-    input[type="number"] {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: black;
-        border-radius: 5px;
-    }
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: black;
+    border-radius: 5px;
+}
 
-    input[type="submit"] {
-        background-color: #e74c3c;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+input[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    input[type="submit"]:hover {
-        background-color: #c0392b;
-    }
+input[type="submit"]:hover {
+    background-color: #c0392b;
+}
 
-    .output {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-        padding: 10px;
-        margin-top: 20px;
-    }
+.output {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
 </style>
 
 <body>
