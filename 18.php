@@ -1,58 +1,132 @@
 <!DOCTYPE html>
-<y lang="en">
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-    <body>
-        <form action="" method="post">
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $siswa = array();
-                for ($i = 1; $i <= 15; $i++) {
-                    echo "<h3>Siswa ke-$i</h3>";
-                    $nilaiTotal = 0;
-                    for ($j = 1; $j <= 5; $j++) {
-                        $mataPelajaran = ['MTK', 'INDO', 'INGG', 'DPK', 'Agama'][$j - 1];
-                        echo "$mataPelajaran: <input type='number' name='nilai[$i][$j]' required><br>";
-                    }
-                    echo "Kehadiran : <input type='number' name='kehadiran[$i]' min='0' max='100' required><br>";
-                }
-                echo "<br><input type='submit' value='Cari'>";
-            } else {
-                echo "<p> isi nilai dan kehadiran siswa:</p>";
-                echo "<form method='post' action=''>";
-                echo "<input type='submit' value='Mulai'>";
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input[type="submit"] {
+        background-color: #8d99ae;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #cad2c5;
+    }
+</style>
+
+<body>
+    <form action="" method="post">
+        <?php
+        session_start();
+
+        $jumlahSiswa = 15;
+        $mataPelajaran = array("MTK", "INDO", "INGG", "DPK", "Agama");
+        $nilaiMinimum = 475;
+        $kehadiranMinimum = 100;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $namaSiswa = $_POST['nama'];
+            $nilai = array();
+            foreach ($mataPelajaran as $mapel) {
+                $nilai[$mapel] = floatval($_POST[$mapel]);
             }
-            ?>
 
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nilai']) && isset($_POST['kehadiran'])) {
-                $siswa = $_POST['nilai'];
-                $kehadiran = $_POST['kehadiran'];
+            $kehadiran = floatval($_POST['kehadiran']);
 
-                $juara = array();
-                foreach ($siswa as $index => $dataSiswa) {
-                    $nilaiTotal = array_sum($dataSiswa);
-                    if ($nilaiTotal >= 475 && $kehadiran[$index] == 100) {
-                        $juara[] = "Siswa ke-$index";
+            if (!isset($_SESSION['siswa'])) {
+                $_SESSION['siswa'] = array();
+            }
+
+            $_SESSION['siswa'][] = array('nama' => $namaSiswa, 'nilai' => $nilai, 'kehadiran' => $kehadiran);
+
+            if (count($_SESSION['siswa']) == $jumlahSiswa) {
+                //buat cari juara
+                $juara = null;
+
+                foreach ($_SESSION['siswa'] as $siswa) {
+                    $totalNilai = array_sum($siswa['nilai']);
+                    $totalKehadiran = $siswa['kehadiran'];
+
+                    if ($totalNilai >= $nilaiMinimum && $totalKehadiran == $kehadiranMinimum) {
+                        $juara = $siswa['nama'];
+                        break;
                     }
                 }
 
-                if (count($juara) > 0) {
-                    echo "<h2>Siswa yang mendapat juara kelas adalah :</h2>";
-                    foreach ($juara as $namaSiswa) {
-                        echo "<p>$namaSiswa</p>";
-                    }
+                if ($juara) {
+                    echo "<h2>Selamat, $juara adalah juara kelas!</h2>";
                 } else {
-                    echo "<h2>Tidak ada siswa yang juara.</h2>";
+                    echo "<h2>Maaf, belum memenuhi syarat.</h2>";
                 }
+                //reset mulai lagi
+                session_destroy();
+            } else {
+                echo "Siswa ke-" . count($_SESSION['siswa']) . " telah di input.<br>";
             }
-            ?>
-        </form>
-    </body>
+        }
+        ?>
 
-    </html>
+        <?php if (!isset($_SESSION['siswa']) || count($_SESSION['siswa']) < $jumlahSiswa) : ?>
+            <label for="nama">Nama Siswa:</label>
+            <input type="text" name="nama" required><br>
+
+            <?php foreach ($mataPelajaran as $mapel) : ?>
+                <label for="<?php echo $mapel; ?>"><?php echo $mapel; ?>:</label>
+                <input type="number" name="<?php echo $mapel; ?>" required><br>
+            <?php endforeach; ?>
+
+            <label for="kehadiran">Kehadiran :</label>
+            <input type="number" name="kehadiran" min="0" max="100" required><br>
+
+            <input type="submit" value="Masukkan Siswa">
+        <?php endif; ?>
+    </form>
+</body>
+
+</html>
